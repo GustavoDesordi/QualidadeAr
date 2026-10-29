@@ -1,0 +1,202 @@
+%PDF-1.4
+%âãÏÓ
+1 0 obj
+<< /Type /Catalog /Pages 2 0 R >>
+endobj
+2 0 obj
+<< /Type /Pages /Kids [7 0 R 9 0 R 11 0 R] /Count 3 >>
+endobj
+3 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica /Encoding /WinAnsiEncoding >>
+endobj
+4 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica-Bold /Encoding /WinAnsiEncoding >>
+endobj
+5 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Courier /Encoding /WinAnsiEncoding >>
+endobj
+6 0 obj
+<< /Length 3793 >>
+stream
+1 1 1 rg 0 0 595 842 re f 0 0 0 rg
+BT /F2 17 Tf 44 792 Td (Monitoramento da Qualidade do Ar) Tj ET
+BT /F2 12 Tf 44 763 Td (Integração MongoDB e Redis com Python - Etapas I e II) Tj ET
+BT /F1 11 Tf 44 739 Td (Bancos de Dados e Novas Tecnologias - Unochapecó) Tj ET
+BT /F1 11 Tf 44 718 Td (Professora: Monica Tissiani De Toni Pereira) Tj ET
+BT /F1 11 Tf 44 697 Td (Ariel Felipe Marques dos Santos; Everton Marlon Berlezi; Gustavo Desordi; Luiz Eduardo) Tj ET
+BT /F1 11 Tf 44 682 Td (Neckel Ghilardi.) Tj ET
+BT /F1 11 Tf 44 661 Td (Chapecó, 29 de outubro de 2026.) Tj ET
+BT /F2 12 Tf 44 640 Td (1. Objetivo e divisão do grupo) Tj ET
+BT /F1 11 Tf 44 616 Td (O protótipo simula sensores ambientais, mantém o histórico no MongoDB, calcula resumos) Tj ET
+BT /F1 11 Tf 44 601 Td (horários e grava os últimos resultados em Hashes no Redis. A demonstração é feita no) Tj ET
+BT /F1 11 Tf 44 586 Td (console, sem interface gráfica.) Tj ET
+BT /F1 11 Tf 44 565 Td (Ariel: modelagem, cadastro e consultas \(banco.py e consultas.py\). Everton: simulador) Tj ET
+BT /F1 11 Tf 44 550 Td (\(gerador.py\). Gustavo: agregações \(agregacoes.py\). Luiz: Redis e integração) Tj ET
+BT /F1 11 Tf 44 535 Td (\(redis_service.py e main.py\). O script testes.py reúne os testes da Etapa II.) Tj ET
+BT /F2 12 Tf 44 514 Td (2. Arquitetura e organização) Tj ET
+0.7 w 44 432 113 48 re S
+BT /F2 10 Tf 53 462 Td (Simulador) Tj ET
+BT /F1 8 Tf 50 446 Td (gerador.py) Tj ET
+157 456 m 172 456 l S
+167 460 m 172 456 l 167 452 l S
+0.7 w 172 432 113 48 re S
+BT /F2 10 Tf 181 462 Td (MongoDB) Tj ET
+BT /F1 8 Tf 178 446 Td (Sensores / Medicoes) Tj ET
+285 456 m 300 456 l S
+295 460 m 300 456 l 295 452 l S
+0.7 w 300 432 113 48 re S
+BT /F2 10 Tf 309 462 Td (Agregacao) Tj ET
+BT /F1 8 Tf 306 446 Td (agregacoes.py) Tj ET
+413 456 m 428 456 l S
+423 460 m 428 456 l 423 452 l S
+0.7 w 428 432 113 48 re S
+BT /F2 10 Tf 437 462 Td (Redis) Tj ET
+BT /F1 8 Tf 434 446 Td (Hashes recentes) Tj ET
+BT /F1 11 Tf 44 404 Td (O Python gera os dados e os grava no MongoDB. O módulo de agregação solicita ao) Tj ET
+BT /F1 11 Tf 44 389 Td (MongoDB o cálculo dos resumos. O Python seleciona a janela mais recente de cada) Tj ET
+BT /F1 11 Tf 44 374 Td (entidade e usa HSET para gravá-la no Redis. HGETALL consulta os campos do Hash.) Tj ET
+BT /F1 11 Tf 44 353 Td (O pacote contém codigo/ com somente arquivos Python e documentacao/ com este) Tj ET
+BT /F1 11 Tf 44 338 Td (relatório. README.md e requirements.txt ficam na raiz. O README identifica os quatro) Tj ET
+BT /F1 11 Tf 44 323 Td (integrantes, explica a execução no Linux e orienta a publicação no GitHub e o convite) Tj ET
+BT /F1 11 Tf 44 308 Td (à usuária MonicaTI.) Tj ET
+BT /F2 12 Tf 44 287 Td (3. Modelagem e implementação) Tj ET
+BT /F1 11 Tf 44 263 Td (O banco QualidadeAr tem as coleções Sensores e Medicoes. Sensores guarda _id, modelo,) Tj ET
+BT /F1 11 Tf 44 248 Td (descrição, localização, ativo e grandezas. Medicoes guarda sensor_id, timestamp UTC,) Tj ET
+BT /F1 11 Tf 44 233 Td (pm25, pm10, co2, temperatura e umidade. O sensor_id corresponde ao _id do cadastro. O) Tj ET
+BT /F1 11 Tf 44 218 Td (índice {sensor_id: 1, timestamp: -1} ajuda nas consultas por sensor e período;) Tj ET
+BT /F1 11 Tf 44 203 Td (unique=True impede repetições do mesmo sensor/horário.) Tj ET
+BT /F1 11 Tf 44 182 Td (São dois sensores por cidade: Chapecó, Xanxerê e Concórdia. Cada sensor gera 288) Tj ET
+BT /F1 11 Tf 44 167 Td (leituras, a cada cinco minutos, de 20/10/2026 00:00 UTC até 21/10/2026 00:00 UTC,) Tj ET
+BT /F1 11 Tf 44 152 Td (excluindo o fim. No total, são 1.728 documentos. Os dados e coordenadas são) Tj ET
+BT /F1 11 Tf 44 137 Td (ilustrativos. ReplaceOne com upsert e identificadores fixos permite repetir a carga) Tj ET
+BT /F1 11 Tf 44 122 Td (sem duplicação.) Tj ET
+BT /F1 8 Tf 290 28 Td (1) Tj ET
+endstream
+endobj
+7 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 595 842] /Resources << /Font << /F1 3 0 R /F2 4 0 R /F3 5 0 R >> >> /Contents 6 0 R >>
+endobj
+8 0 obj
+<< /Length 3956 >>
+stream
+1 1 1 rg 0 0 595 842 re f 0 0 0 rg
+BT /F2 12 Tf 44 792 Td (4. Agregações e Redis) Tj ET
+BT /F1 11 Tf 44 768 Td (A consulta usa o intervalo [início, fim\): inclui o início e exclui o fim. O pipeline) Tj ET
+BT /F1 11 Tf 44 753 Td (aplica $match para período e valores numéricos; $lookup e $unwind para obter a cidade) Tj ET
+BT /F1 11 Tf 44 738 Td (do sensor; $group para reunir ano, mês, dia e hora; $sum para contagem; $avg para as) Tj ET
+BT /F1 11 Tf 44 723 Td (cinco médias; $max para máximos de PM2.5 e PM10; e $project para selecionar os campos.) Tj ET
+BT /F1 11 Tf 44 708 Td (O Python monta inicio_periodo e fim_periodo.) Tj ET
+BT /F1 11 Tf 44 687 Td (A média por cidade usa as leituras originais, e não a média simples das médias dos) Tj ET
+BT /F1 11 Tf 44 672 Td (sensores. Os resultados são armazenados em qualidadear:sensor:S001 e) Tj ET
+BT /F1 11 Tf 44 657 Td (qualidadear:cidade:SC:chapeco, por exemplo. A cidade é normalizada sem acentos e em) Tj ET
+BT /F1 11 Tf 44 642 Td (minúsculas. São seis Hashes de sensores e três de cidades, cada um com o resumo de) Tj ET
+BT /F1 11 Tf 44 627 Td (maior fim_periodo.) Tj ET
+BT /F2 12 Tf 44 606 Td (5. Execução e resultados) Tj ET
+BT /F1 11 Tf 44 582 Td (A execução padrão utiliza Linux, Python com PyMongo e redis-py, MongoDB em) Tj ET
+BT /F1 11 Tf 44 567 Td (localhost:27017 e Redis em localhost:6379. Não há caminhos Homebrew ou comandos) Tj ET
+BT /F1 11 Tf 44 552 Td (específicos de macOS no código. Os serviços devem estar previamente instalados e) Tj ET
+BT /F1 11 Tf 44 537 Td (ativos. Na raiz do projeto:) Tj ET
+BT /F3 9 Tf 44 516 Td (python3 -m venv .venv) Tj ET
+BT /F3 9 Tf 44 504 Td (source .venv/bin/activate) Tj ET
+BT /F3 9 Tf 44 492 Td (python -m pip install -r requirements.txt) Tj ET
+BT /F3 9 Tf 44 480 Td (python codigo/main.py) Tj ET
+BT /F3 9 Tf 44 468 Td (python codigo/testes.py) Tj ET
+BT /F1 11 Tf 44 456 Td () Tj ET
+BT /F1 11 Tf 44 435 Td (Em 29/10/2026, os dois programas foram executados com MongoDB e Redis reais nas portas) Tj ET
+BT /F1 11 Tf 44 420 Td (padrão. A máquina disponível era macOS, com Python 3.9.6, MongoDB 8.0.32, Redis) Tj ET
+BT /F1 11 Tf 44 405 Td (8.10.2, PyMongo 4.18.3 e redis-py 7.0.1. Ainda não foi realizada uma execução em) Tj ET
+BT /F1 11 Tf 44 390 Td (Linux.) Tj ET
+BT /F3 9 Tf 44 369 Td (Sensores: 6 em 3 cidades) Tj ET
+BT /F3 9 Tf 44 357 Td (Medicoes geradas e armazenadas: 1728) Tj ET
+BT /F3 9 Tf 44 345 Td (Consulta S001, das 10h as 11h UTC: 12 leituras) Tj ET
+BT /F3 9 Tf 44 333 Td (Resumos por sensor: 144) Tj ET
+BT /F3 9 Tf 44 321 Td (Resumos por cidade: 72) Tj ET
+BT /F3 9 Tf 44 309 Td (Hashes gravados: 9) Tj ET
+BT /F1 11 Tf 44 297 Td () Tj ET
+BT /F1 11 Tf 44 276 Td (A aplicação foi executada duas vezes: a contagem permaneceu em 1.728. Os 216 resumos e) Tj ET
+BT /F1 11 Tf 44 261 Td (os nove Hashes foram comparados com um cálculo independente em Python, com resultados) Tj ET
+BT /F1 11 Tf 44 246 Td (coincidentes.) Tj ET
+BT /F2 12 Tf 44 225 Td (6. Testes com dados diferentes - Etapa II) Tj ET
+BT /F1 11 Tf 44 201 Td (testes.py insere uma amostra fixa de 2030, diferente da carga principal. Dois sensores) Tj ET
+BT /F1 11 Tf 44 186 Td (têm PM2.5 de 10 e 20, e 100, respectivamente. A média da cidade deve ser 130/3 =) Tj ET
+BT /F1 11 Tf 44 171 Td (43,3333, e não 57,5. O script verifica as cinco médias, dois máximos, contagens,) Tj ET
+BT /F1 11 Tf 44 156 Td (consulta temporal, fim exclusivo e a última janela no Redis. Também testa a geração de) Tj ET
+BT /F1 11 Tf 44 141 Td (1.728 registros e a repetição da carga. Todos esses testes passaram na execução) Tj ET
+BT /F1 11 Tf 44 126 Td (registrada.) Tj ET
+BT /F1 11 Tf 44 105 Td (O script usa um banco e chaves exclusivos, identificados por um sufixo aleatório. Ao) Tj ET
+BT /F1 11 Tf 44 90 Td (terminar, remove somente os recursos criados pelo próprio teste. A base QualidadeAr e) Tj ET
+BT /F1 11 Tf 44 75 Td (os Hashes da demonstração são preservados.) Tj ET
+BT /F1 8 Tf 290 28 Td (2) Tj ET
+endstream
+endobj
+9 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 595 842] /Resources << /Font << /F1 3 0 R /F2 4 0 R /F3 5 0 R >> >> /Contents 8 0 R >>
+endobj
+10 0 obj
+<< /Length 3912 >>
+stream
+1 1 1 rg 0 0 595 842 re f 0 0 0 rg
+BT /F2 12 Tf 44 792 Td (7. Dificuldades e soluções) Tj ET
+BT /F1 11 Tf 44 768 Td (A versão inicial tinha recursos além do solicitado e instruções centradas no Mac. A) Tj ET
+BT /F1 11 Tf 44 753 Td (revisão manteve os seis módulos simples, adotou os serviços padrão e colocou Linux) Tj ET
+BT /F1 11 Tf 44 738 Td (como ambiente principal no README. A Etapa II foi atendida no pacote com a separação) Tj ET
+BT /F1 11 Tf 44 723 Td (das pastas, o diagrama e um script de teste com outros dados.) Tj ET
+BT /F1 11 Tf 44 702 Td (As conexões locais tinham sido bloqueadas durante a preparação anterior. Nesta) Tj ET
+BT /F1 11 Tf 44 687 Td (revisão, o acesso aos serviços funcionou, permitindo executar o protótipo e os testes) Tj ET
+BT /F1 11 Tf 44 672 Td (reais. O agrupamento usa ano, mês, dia e hora para evitar depender de $dateTrunc e) Tj ET
+BT /F1 11 Tf 44 657 Td ($dateAdd. Isso não dispensa verificar a compatibilidade entre o servidor MongoDB e o) Tj ET
+BT /F1 11 Tf 44 642 Td (driver instalado.) Tj ET
+BT /F2 12 Tf 44 621 Td (8. Ferramentas utilizadas e inteligência artificial) Tj ET
+BT /F1 11 Tf 44 597 Td (Ferramentas: Python, PyMongo, redis-py, MongoDB, Redis, terminal e MongoDB Compass.) Tj ET
+BT /F1 11 Tf 44 582 Td (ChatGPT/Codex auxiliou na escrita, revisão, organização, testes e documentação. Claude) Tj ET
+BT /F1 11 Tf 44 567 Td (foi usado na revisão apresentada pelo grupo, que apontou excessos e problemas de) Tj ET
+BT /F1 11 Tf 44 552 Td (portabilidade. O código está dividido conforme os assuntos da apresentação.) Tj ET
+BT /F2 12 Tf 44 531 Td (9. Apresentação e entrega no GitHub) Tj ET
+BT /F1 11 Tf 44 507 Td (A apresentação começa com uma introdução ao problema e à arquitetura. Depois, cada) Tj ET
+BT /F1 11 Tf 44 492 Td (integrante demonstra sua parte no console e o grupo executa codigo/testes.py,) Tj ET
+BT /F1 11 Tf 44 477 Td (mostrando os dados diferentes e as verificações aprovadas. O README descreve a ordem e) Tj ET
+BT /F1 11 Tf 44 462 Td (os comandos.) Tj ET
+BT /F1 11 Tf 44 441 Td (O repositório GitHub e o compartilhamento com MonicaTI dependem da conta do grupo. Não) Tj ET
+BT /F1 11 Tf 44 426 Td (foram criados nesta sessão. O pacote está organizado para envio ao repositório com as) Tj ET
+BT /F1 11 Tf 44 411 Td (pastas codigo/ e documentacao/. A conclusão desses passos deve ser conferida no GitHub) Tj ET
+BT /F1 11 Tf 44 396 Td (antes da entrega.) Tj ET
+BT /F2 12 Tf 44 375 Td (10. Referências) Tj ET
+BT /F1 11 Tf 44 351 Td (PEREIRA, Monica Tissiani De Toni. Estudo de Caso: Monitoramento da Qualidade do Ar -) Tj ET
+BT /F1 11 Tf 44 336 Td (Integração MongoDB + Redis com Python. Trabalhos práticos, Etapas I e II. Chapecó:) Tj ET
+BT /F1 11 Tf 44 321 Td (Unochapecó, 2026.) Tj ET
+BT /F1 11 Tf 44 300 Td (Divisão das tarefas do grupo. Documento fornecido pelos integrantes, 2026.) Tj ET
+BT /F1 11 Tf 44 279 Td (MONGODB. Aggregation \(PyMongo\). https://www.mongodb.com/docs/languages/python/pymongo-) Tj ET
+BT /F1 11 Tf 44 264 Td (driver/current/aggregation/. Consulta na elaboração: 22 out. 2026.) Tj ET
+BT /F1 11 Tf 44 243 Td (REDIS. HSET e HGETALL. https://redis.io/docs/latest/commands/hset/ e) Tj ET
+BT /F1 11 Tf 44 228 Td (https://redis.io/docs/latest/commands/hgetall/. Consulta na elaboração: 22 out. 2026.) Tj ET
+BT /F1 11 Tf 44 207 Td (PYTHON SOFTWARE FOUNDATION. datetime. https://docs.python.org/3/library/datetime.html.) Tj ET
+BT /F1 11 Tf 44 192 Td (Consulta na elaboração: 22 out. 2026.) Tj ET
+BT /F1 11 Tf 44 171 Td (OPENAI. ChatGPT/Codex. https://chatgpt.com/overview/. ANTHROPIC. Claude.) Tj ET
+BT /F1 11 Tf 44 156 Td (https://claude.ai/. Ferramentas utilizadas na elaboração e revisão.) Tj ET
+BT /F1 11 Tf 44 135 Td (Código-fonte: os sete arquivos Python e requirements.txt acompanham o relatório no) Tj ET
+BT /F1 11 Tf 44 120 Td (pacote e devem ser enviados ao repositório do grupo.) Tj ET
+BT /F1 8 Tf 290 28 Td (3) Tj ET
+endstream
+endobj
+11 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 595 842] /Resources << /Font << /F1 3 0 R /F2 4 0 R /F3 5 0 R >> >> /Contents 10 0 R >>
+endobj
+xref
+0 12
+0000000000 65535 f 
+0000000015 00000 n 
+0000000064 00000 n 
+0000000134 00000 n 
+0000000231 00000 n 
+0000000333 00000 n 
+0000000428 00000 n 
+0000004273 00000 n 
+0000004419 00000 n 
+0000008427 00000 n 
+0000008573 00000 n 
+0000012538 00000 n 
+trailer
+<< /Size 12 /Root 1 0 R >>
+startxref
+12686
+%%EOF
