@@ -61,9 +61,3 @@ consulta temporal, carga repetida e a leitura dos últimos resumos no Redis.
 O script cria um banco e chaves exclusivos do teste e remove somente esses
 recursos ao terminar. Não apaga a base QualidadeAr nem os Hashes da aplicação.
 Uma falha gera AssertionError ou erro de conexão; sucesso imprime APROVADO.
-
-## Diagrama
-
-<p align="center">
-  <img src="assets/Diagrama.png" width="400" alt="Diagrama">
-</p>
