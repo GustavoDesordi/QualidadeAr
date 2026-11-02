@@ -1,0 +1,19 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+
+# Ambiente virtual
+.venv/
+venv/
+
+# Testes
+.pytest_cache/
+.coverage
+
+# Ambiente local
+.env
+
+# Sistema operacional
+.DS_Store
+Thumbs.db
